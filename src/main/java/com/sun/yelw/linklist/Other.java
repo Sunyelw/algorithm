@@ -20,11 +20,13 @@ public class Other {
 
     // find and find0
     // compare...
+    // 使用哨兵优化代码, 此处的哨兵是替换后的最后一个元素
 
     private static int find(int[] arr, int n, int key) {
         int i = 0;
 
         // 每次循环要比较两次
+        // i < n && arr[i] == key
         while (i < n) {
             if (arr[i] == key) {
                 break;
@@ -42,6 +44,7 @@ public class Other {
         arr[n - 1] = key;
 
         // 每次循环只有一次比较
+        // arr[i] != key
         int i = 0;
         while (arr[i] != key) i++;
 

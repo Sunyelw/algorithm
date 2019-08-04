@@ -125,4 +125,30 @@ public class SingleList {
         return null == p;
     }
 
+    // 判断是否有环并找到环入口点
+    public Node findLoopPoint() {
+
+        Node fast = header;
+        Node slow = header;
+
+        while (null != fast && null != fast.next) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (slow == fast) break;
+        }
+
+        // 不存在环
+        if (null == fast || null == fast.next) return null;
+
+        // 存在环，slow指回起点，fast指向相遇点
+        slow = header;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // 再次相遇点即为环入口
+        return slow;
+    }
+
 }

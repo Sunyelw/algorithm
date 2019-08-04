@@ -15,34 +15,44 @@ public class LInkListDemo {
 
     public static void main(String[] args){
 
-        List<Integer> list = new LinkedList <>();
-        list.add(1);
-
         // 初始化链表--单
         SingleList sList = new SingleList(new int[]{1, 3, 2, 5, 7, 10, 9});
         printNode(sList.getHeader());
 
-        // 初始化链表--双
-        initDouble(new int[]{1, 3, 2, 5, 7, 10, 9});
+//        // 初始化链表--双
+//        initDouble(new int[]{1, 3, 2, 5, 7, 10, 9});
 
-        // 反转单链表
-        sList.reverseList();
-        printNode(sList.getHeader());
+//        // 反转单链表
+//        sList.reverseList();
+//        printNode(sList.getHeader());
 
-        // 查询链表中间节点
-        int data = sList.getMidNode();
-        int data0 = sList.getMidNode0();
-        System.out.println("d1:" + data);
-        System.out.println("d0:" + data0);
+//        // 查询链表中间节点
+//        int data = sList.getMidNode();
+//        int data0 = sList.getMidNode0();
+//        System.out.println("d1:" + data);
+//        System.out.println("d0:" + data0);
 
-        // 查询链表的倒数第三个节点
-        int num = 3;
-        System.out.println(num + "==" + sList.getLastIndexNode(num));
+//        // 查询链表的倒数第三个节点
+//        int num = 3;
+//        System.out.println(num + "==" + sList.getLastIndexNode(num));
 
-        // 判断链表是否有环
+        // 判断链表是否有环, 并返回环的起点
+        System.out.println( sList.findLoopPoint() );
 
+        // // 人为创建环
+        Node node = sList.getHeader();
+        while (null != node) {
+            if (node.data == 10) {
+                node.next = sList.getHeader().next.next;
+                break;
+            }
+            node = node.next;
+        }
 
-        // 判断环的起点
+        System.out.println( sList.findLoopPoint() );
+
+//        // // StackOverflowError
+//        printNode(sList.getHeader());
 
     }
 
