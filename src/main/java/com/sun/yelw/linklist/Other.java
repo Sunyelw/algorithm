@@ -16,6 +16,12 @@ public class Other {
         // test
         System.out.println(find(arr, arr.length, 976));
         System.out.println(find0(arr, arr.length, 796));
+
+        SingleList s1 = new SingleList(new int[]{1, 3, 5, 7, 9});
+        SingleList s2 = new SingleList(new int[]{2, 3, 4, 6, 10, 100});
+
+        LinkListDemo.printNode(mergeTwoList(s1.getHeader(), s2.getHeader()));
+
     }
 
     // find and find0
@@ -51,6 +57,30 @@ public class Other {
         arr[n - 1] = tmp;
 
         return n - 1 == i ? -1 : i;
+    }
+
+    // 合并两个有序链表
+    private static Node mergeTwoList(Node n1, Node n2) {
+        // 哨兵节点
+        Node sentinel = new Node(0);
+        Node p = sentinel;
+
+        while (null != n1 && null != n2) {
+            if (n1.data < n2.data) {
+                p.next = n1;
+                n1 = n1.next;
+            } else {
+                p.next = n2;
+                n2 = n2.next;
+            }
+            p = p.next;
+        }
+
+        // 处理剩余的节点
+        if (n1 == null) p.next = n2;
+        if (n2 == null) p.next = n1;
+
+        return sentinel.next;
     }
 
 }

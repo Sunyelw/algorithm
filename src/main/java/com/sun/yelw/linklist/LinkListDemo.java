@@ -1,8 +1,5 @@
 package com.sun.yelw.linklist;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * 项目名称:   MyDemo
  * 包:        com.example.demo.algorithm.linklist
@@ -11,7 +8,7 @@ import java.util.List;
  * 创建人:     huangyang
  * 创建时间:   2019/8/1 15:29
  */
-public class LInkListDemo {
+public class LinkListDemo {
 
     public static void main(String[] args){
 
@@ -81,7 +78,7 @@ public class LInkListDemo {
     }
 
     // 遍历输出
-    private static void printNode(Node node) {
+    protected static void printNode(Node node) {
         if (null == node) return;
         System.out.println(node.data);
         printNode(node.next);
