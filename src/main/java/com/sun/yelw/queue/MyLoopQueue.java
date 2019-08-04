@@ -21,6 +21,8 @@ public class MyLoopQueue<T> {
      * 堆满条件为 (tail + 1) % size == head
      *
      * head 和 tail 的自增要注意
+     *
+     * TODO 并发队列、阻塞队列
      */
 
     // 队列数组
@@ -33,7 +35,7 @@ public class MyLoopQueue<T> {
     private int size;
 
     private MyLoopQueue(int capacity) {
-        items = new Object[capacity] ;
+        items = new Object[capacity];
         size = capacity;
         tail = head = 0;
     }
@@ -62,11 +64,13 @@ public class MyLoopQueue<T> {
     }
 
     // 队尾自增
+    // (tail + 1) % n
     private int addTail() {
         return size - 1 == tail ? 0 : ++tail;
     }
 
     // 队尾自增
+    // (head + 1) % n
     private int addHead() {
         return size - 1 == head ? 0 : ++head;
     }
