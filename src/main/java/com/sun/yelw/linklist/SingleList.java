@@ -72,7 +72,7 @@ public class SingleList {
     }
 
     // 查询链表中间节点
-    public int getMidNode() {
+    public Node getMidNode() {
         Node p, q;
         p = header;
         q = header;
@@ -82,11 +82,11 @@ public class SingleList {
             np++;
             if (np % 2 == 0) q = q.next;
         }
-        return q.data;
+        return q;
     }
 
     // 查询链表中间节点
-    public int getMidNode0() {
+    public Node getMidNode0() {
         Node p, q;
         p = header;
         q = header;
@@ -94,7 +94,7 @@ public class SingleList {
             p = p.next.next;
             q = q.next;
         }
-        return q.data;
+        return q;
     }
 
     // 查询倒数 num 个节点
@@ -222,4 +222,51 @@ public class SingleList {
         return slow;
     }
 
+    /**
+     *
+     * 回文字符串
+     *
+     * 快慢指针，慢指针遍历的同时逆序，到中点位置比较俩链表是否相同
+     *
+     * 时间 O(N)
+     *
+     * 空间 O(1)
+     *
+     */
+    public boolean isLoopString() {
+
+        // 快慢
+        Node fast = header;
+        Node slow = header;
+
+        // 反转
+        Node q = header;
+        Node r;
+
+//        // 此处不能跟反转时一样赋值null，否则循环进不去
+//        // 判断时可以判断尾节点的next为null 作为循环比较结束条件
+//        header.next = null;
+
+        // 找到中间节点并反转前半部分链表
+        while (null != fast && null != fast.next) {
+            // 定位中点位置
+            fast = fast.next.next;
+            // 反转前面的链表
+            r = q.next;
+            q.next = slow;
+            slow = q;
+            q = r;
+        }
+
+        // 数组长度为奇数时需要避开中间节点进行下一步比较
+        if (null != fast) q = q.next;
+
+        // 回文比较
+        while (null != q) {
+            if (! q.data.equals(slow.data)) return false;
+            q = q.next;
+            slow = slow.next;
+        }
+        return true;
+    }
 }

@@ -13,8 +13,13 @@ public class LinkListDemo {
     public static void main(String[] args){
 
         // 初始化链表--单
-        SingleList sList = new SingleList(new int[]{1, 3, 2, 5, 7, 10, 9});
+//        SingleList sList = new SingleList(new int[]{1, 3, 2, 5, 7, 10, 9});
+//        SingleList sList = new SingleList(new int[]{1, 3, 2, 5, 2, 3, 1});
+        SingleList sList = new SingleList(new int[]{1, 3, 2, 2, 3, 1});
         printNode(sList.getHeader());
+        System.out.println();
+
+        System.out.println("loop: " + sList.isLoopString());
 
 //        // 初始化链表--双
 //        initDouble(new int[]{1, 3, 2, 5, 7, 10, 9});
@@ -33,23 +38,7 @@ public class LinkListDemo {
 //        int num = 3;
 //        System.out.println(num + "==" + sList.getLastIndexNode(num));
 
-        // 判断链表是否有环, 并返回环的起点
-        System.out.println( sList.findLoopPoint() );
 
-        // // 人为创建环
-        Node node = sList.getHeader();
-        while (null != node) {
-            if (node.data == 10) {
-                node.next = sList.getHeader().next.next;
-                break;
-            }
-            node = node.next;
-        }
-
-        System.out.println( sList.findLoopPoint() );
-
-//        // // StackOverflowError
-//        printNode(sList.getHeader());
 
     }
 
@@ -80,7 +69,25 @@ public class LinkListDemo {
     // 遍历输出
     protected static void printNode(Node node) {
         if (null == node) return;
-        System.out.println(node.data);
+        System.out.print(node.data + " ");
         printNode(node.next);
+    }
+
+    // 判断链表是否有环, 并返回环的起点
+    private static void findLoopPoint(SingleList sList) {
+
+        System.out.println( sList.findLoopPoint() );
+
+        // // 人为创建环
+        Node node = sList.getHeader();
+        while (null != node) {
+            if (node.data == 10) {
+                node.next = sList.getHeader().next.next;
+                break;
+            }
+            node = node.next;
+        }
+
+        System.out.println( sList.findLoopPoint() );
     }
 }
