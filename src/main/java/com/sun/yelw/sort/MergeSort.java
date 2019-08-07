@@ -28,7 +28,9 @@ public class MergeSort {
     private static void merge(int[] arr, int p, int q, int r) {
 
         int[] tmp = new int[arr.length];
+        // TODO 记录本次循环数组开始位置, 用于后面替换数组
         int pn = p;
+        // 第二个子数组开始下标
         int p1 = q + 1;
 
         // p -> q, q + 1 > r
@@ -44,14 +46,18 @@ public class MergeSort {
             n++;
         }
 
+        // 将多出部分入数组
         while (p <= q) {
             tmp[n++] = arr[p++];
         }
-
         while (p1 <= r) {
             tmp[n++] = arr[p1++];
         }
 
+        // TODO 数组替换
+        // tmp 从 0 开始填充数据
+        // arr 从 pn 开始的比较
+        // 总计n个数, 下标 + 1 为实际数量
         System.arraycopy(tmp, 0, arr, pn, n);
     }
 
