@@ -74,7 +74,7 @@ public class BinarySearch {
             if (arr[mid] < value) {
                 low = mid + 1;
             } else if (arr[mid] > value) {
-                high = mid + 1;
+                high = mid - 1;
             } else {
                 high = mid;
             }
@@ -82,28 +82,111 @@ public class BinarySearch {
         return arr[high] == value ? high : -1;
     }
 
-    //2 查找最后一个等于该值
+    private static int doFirstEqual2(int[] arr, int n, int value) {
 
-    //3 查找第一个大与该值
+        int low = 0;
+        int high = n -1;
+        int mid;
+        while (low <= high) {
+            mid = low + ((high - low) >> 1);
+            if (arr[mid] < value) {
+                low = mid + 1;
+            } else if (arr[mid] >= value) {
+                high = mid - 1;
+            }
+        }
+        return low < n && arr[low] == value ? low : -1;
+    }
+
+    //2 查找最后一个等于该值
+    private static int doLastEqual2(int[] arr, int n, int value) {
+
+        int low = 0;
+        int high = n -1;
+        int mid;
+        while (low <= high) {
+            mid = low + ((high - low) >> 1);
+            if (arr[mid] <= value) {
+                low = mid + 1;
+            } else if (arr[mid] > value) {
+                high = mid - 1;
+            }
+        }
+        return high > 0 && arr[high] == value ? high : -1;
+    }
+
+    //3 查找第一个大于该值
+    private static int doFirstGrater(int[] arr, int n, int value) {
+
+            int low = 0;
+            int high = n -1;
+            int mid;
+            while (low <= high) {
+                //
+                mid = ((high - low) / 2) + low;
+                if (arr[mid] <= value) {
+                    low = mid + 1;
+                } else if (arr[mid] > value) {
+                    high = mid - 1;
+                }
+            }
+
+        // 比所有数都>=，这种情况的 high 指针一定是指向最后一个元素, low为 n + 1
+        if (low > n - 1) return -1;
+
+        // 比所有数都小，low 为 0， high 为 0 - 1 = -1
+        // 其他情况直接 high + 1
+        return high <= 0 ? 0 : high + 1;
+    }
 
     //4 查找最后一个小于该值
+    private static int doLastLess(int[] arr, int n, int value) {
+
+        int low = 0;
+        int high = n -1;
+        int mid;
+        while (low <= high) {
+            //
+            mid = ((high - low) / 2) + low;
+            if (arr[mid] < value) {
+                low = mid + 1;
+            } else if (arr[mid] >= value) {
+                high = mid - 1;
+            }
+        }
+
+        // 比所有数都<=，这种情况的 low 指针一定是指向第一个元素, high 为 -1
+        if (high == -1) return -1;
+
+        // 比所有数都大，low 为 n， high 为 n - 1
+        // 其他情况直接 low - 1
+        return low >= n ? n - 1 : low - 1;
+    }
 
     public static void main(String[] args){
 
-        int[] arr = {1, 4, 4, 4, 7, 9, 12};
+        int[] arr = {1, 3, 4, 5, 7, 9, 12};
         int[] arr1 = {1, 4, 4, 5, 5, 5, 6, 6, 6, 12};
-        int num, num1, num2, num3;
+        int num0 = 0, num1 = 0, num2 = 0, num3, num4;
 
-        num = doEqual(arr, 7, 4);
+//        num0 = doLastEqual2(arr, 7, 0);
+//        num1 = doLastEqual2(arr, 7, 4);
+//        num2 = doLastEqual2(arr, 7, 5);
+//        num3 = doLastEqual2(arr, 7, 6);
+//        num4 = doLastEqual2(arr, 7, 15);
 
-        num1 = doFirstEqual1(arr1, 10, 4);
-        num2 = doFirstEqual1(arr1, 10, 5);
-        num3 = doFirstEqual1(arr1, 10, 6);
+        num0 = doLastLess(arr1, 10, 0);
+        num1 = doLastLess(arr1, 10, 4);
+        num2 = doLastLess(arr1, 10, 11);
+        num3 = doLastLess(arr1, 10, 12);
+        num4 = doLastLess(arr1, 10, 15);
 
         System.out.println(Arrays.toString(arr1));
-        System.out.println(num1);
-        System.out.println(num2);
-        System.out.println(num3);
+        System.out.println("0 -- " + num0);
+        System.out.println("4 -- " + num1);
+        System.out.println("11 -- " + num2);
+        System.out.println("12 -- " + num3);
+        System.out.println("15 -- " + num4);
     }
 
 }
