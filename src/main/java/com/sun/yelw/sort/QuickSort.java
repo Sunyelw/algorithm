@@ -44,7 +44,6 @@ public class QuickSort {
         int tmp;
 
         for (int j = p; j < r; j++) {
-            // 这里的 = 是稳定排序的原因
             if (arr[j] <= pivot) {
                 x++;
                 // swap arr[x] arr[j]
