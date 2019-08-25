@@ -12,6 +12,13 @@ import java.util.Arrays;
  */
 public class MergeSort {
 
+    /**
+     * doSort
+     *
+     * @param arr 待排序数组
+     * @param p 起始下标
+     * @param r 结束下标
+     */
     private static void doSort(int[] arr, int p, int r) {
 
         if (p < r) {
@@ -24,16 +31,23 @@ public class MergeSort {
         }
     }
 
-    // p q r 都是下标
+    /**
+     * merge
+     *
+     * @param arr 待排序数组
+     * @param p 起始下标
+     * @param q 合并分界
+     * @param r 结束下标
+     */
     private static void merge(int[] arr, int p, int q, int r) {
 
         int[] tmp = new int[arr.length];
-        // TODO 记录本次循环数组开始位置, 用于后面替换数组
+        // 记录本次循环数组开始位置, 用于后面替换数组
         int pn = p;
         // 第二个子数组开始下标
         int p1 = q + 1;
 
-        // p -> q, q + 1 > r
+        // p -> q, q + 1 -> r
         int n = 0;
         while (p <= q && p1 <= r) {
             if (arr[p] <= arr[p1]) {
@@ -54,7 +68,7 @@ public class MergeSort {
             tmp[n++] = arr[p1++];
         }
 
-        // TODO 数组替换
+        // 从 tmp 到 arr 数组替换
         // tmp 从 0 开始填充数据
         // arr 从 pn 开始的比较
         // 总计n个数, 下标 + 1 为实际数量

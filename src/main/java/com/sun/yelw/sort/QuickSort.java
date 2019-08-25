@@ -47,15 +47,18 @@ public class QuickSort {
             if (arr[j] <= pivot) {
                 x++;
                 // swap arr[x] arr[j]
+                if (x == j) continue;
                 tmp = arr[x];
                 arr[x] = arr[j];
                 arr[j] = tmp;
             }
         }
         // swap arr[x + 1] arr[r]
-        tmp = arr[x + 1];
-        arr[x + 1] = arr[r];
-        arr[r] = tmp;
+        if (r != x + 1) {
+            tmp = arr[x + 1];
+            arr[x + 1] = arr[r];
+            arr[r] = tmp;
+        }
         return x + 1;
     }
 
