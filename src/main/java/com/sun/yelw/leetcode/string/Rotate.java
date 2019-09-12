@@ -1,4 +1,4 @@
-package com.sun.yelw.leetcode;
+package com.sun.yelw.leetcode.string;
 
 import java.util.Arrays;
 
@@ -10,7 +10,7 @@ import java.util.Arrays;
  * 创建人:     huangyang
  * 创建时间:   2019/9/7 12:13
  */
-public class StringCode {
+public class Rotate {
 
     public static void main(String[] args){
 
