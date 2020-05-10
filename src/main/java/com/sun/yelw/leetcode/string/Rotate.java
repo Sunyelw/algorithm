@@ -10,6 +10,7 @@ import java.util.Arrays;
  * 创建人:     huangyang
  * 创建时间:   2019/9/7 12:13
  */
+@SuppressWarnings("all")
 public class Rotate {
 
     public static void main(String[] args){

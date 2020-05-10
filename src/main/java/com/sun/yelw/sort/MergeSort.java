@@ -22,7 +22,7 @@ public class MergeSort {
     private static void doSort(int[] arr, int p, int r) {
 
         if (p < r) {
-            int q = (p + r) >> 1;
+            int q = r + ((p - r) >> 1);
             // 对子数组排序
             doSort(arr, p, q);
             doSort(arr, q + 1, r);

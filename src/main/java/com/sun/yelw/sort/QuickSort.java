@@ -19,7 +19,7 @@ public class QuickSort {
      *
      * 空间: O(1) (原地排序)
      *
-     * 稳定排序
+     * 不是稳定排序
      *
      */
 
@@ -65,7 +65,7 @@ public class QuickSort {
     public static void main(String[] args){
 
         int arr[] = new int[]{1, 9, 4, 5, 2, 8, 3, 6};
-        doSort(arr, 0, 7);
+        doSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
 

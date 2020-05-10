@@ -1,7 +1,5 @@
 package com.sun.yelw.search;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
 import java.util.List;
 

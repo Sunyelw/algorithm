@@ -8,7 +8,8 @@
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>quickstart</name>
+	<!-- maven print: build <name> <version> -->
+	<name>algorithm-by-hy</name>
 	<description>algorithm practice</description>
 
 	<parent>
@@ -17,6 +18,37 @@
 		<version>2.1.0.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+    <!-- pom-profile-repo -->
+    <profiles>
+        <profile>
+            <id>pom_profile</id>
+            <repositories>
+                <repository>
+                    <id>pom_profile_repo</id>
+                    <name>pom_profile_repo_name</name>
+                    <url>http://mirrors.163.com/maven/repository/maven-public</url>
+                </repository>
+            </repositories>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>ASIAINFO MIGU REPO</name>
+            <url>http://10.1.228.195:18081/nexus/content/groups/public</url>
+        </repository>
+
+        <repository>
+            <id>hy-repo</id>
+            <name>HY REPO</name>
+            <url>http://10.1.228.195:18081/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 
 	<dependencies>
 		<dependency>
@@ -37,6 +69,43 @@
 			<optional>true</optional>
 			<version>1.16.18</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.migu.tsg</groupId>
+			<artifactId>migu-metrics</artifactId>
+			<version>1.0.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+                <!-- 引入自定义插件 -->
+				<groupId>com.sun.yelw</groupId>
+				<artifactId>hy-maven-plugin</artifactId>
+				<version>3.5.1</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>hy-an</goal>
+							<goal>hy-doc</goal>
+						</goals>
+					</execution>
+				</executions>
+                <!-- 启动参数 -->
+                <configuration>
+                    <name>hy</name>
+                    <age>11</age>
+                </configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

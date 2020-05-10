@@ -1,26 +1,45 @@
-package com.sun.yelw.leetcode.string;
+//给你一个未排序的整数数组，请你找出其中没有出现的最小的正整数。 
+//
+// 
+//
+// 示例 1: 
+//
+// 输入: [1,2,0]
+//输出: 3
+// 
+//
+// 示例 2: 
+//
+// 输入: [3,4,-1,1]
+//输出: 2
+// 
+//
+// 示例 3: 
+//
+// 输入: [7,8,9,11,12]
+//输出: 1
+// 
+//
+// 
+//
+// 提示： 
+//
+// 你的算法的时间复杂度应为O(n)，并且只能使用常数级别的额外空间。 
+// Related Topics 数组
 
-/**
- * 项目名称:   pinkstone
- * 包:        com.sun.yelw.leetcode.string
- * 类名称:     FindMissing
- * 类描述:     查找未排序数组中的未出现的最小正整数
- * 创建人:     huangyang
- * 创建时间:   2019/9/7 15:24
- */
+package com.sun.yelw.leetcode.editor.cn;
+
 @SuppressWarnings("all")
-public class FindMissing {
-
-    public static void main(String[] args){
-
-        int[] arr = {1,2,3,4};
-        System.out.println(doFind(arr));
+public class FirstMissingPositive{
+    public static void main(String[] args) {
+        Solution solution = new FirstMissingPositive().new Solution();
     }
+  
+    
 
-    // 41 给定一个未排序的整数数组，找出其中没有出现的最小的正整数。
-    private static int doFind(int[] nums) {
-        // 1 2 3 4 5 ...
-
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    public int firstMissingPositive(int[] nums) {
         // handle 1
         int cnt = 0;
         for (int num : nums) {
@@ -57,4 +76,7 @@ public class FindMissing {
         }
         return i + 1;
     }
+}
+//leetcode submit region end(Prohibit modification and deletion)
+ 
 }
