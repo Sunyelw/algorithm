@@ -19,8 +19,6 @@ package com.sun.yelw.other;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 包:        com.sun.yelw.other
@@ -43,13 +41,13 @@ public class Hello {
     public static void main(String[] args) throws InterruptedException{
 
         // 运送容量
-        final int ALL_SIZE = 2;
+        final int ALL_SIZE = 5;
         // 当前容量
-        final int CURR_CAPACITY = 5;
+        final int CURR_CAPACITY = 10;
         // 总生产量
-        final int ALL_CAPACITY = 10;
+        final int ALL_CAPACITY = 100;
 
-        Lock lock = new ReentrantLock();
+        HyLock lock = new HyLock(4);
 
         // 取货车
         Condition carCondition = lock.newCondition();
@@ -77,6 +75,7 @@ public class Hello {
                     milkInt.addAndGet(2);
                     System.out.println(x++ + " 生产了两份 milkInt: " + milkInt.get());
                     milkCondition.signal();
+//                    Thread.sleep(2000000000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
