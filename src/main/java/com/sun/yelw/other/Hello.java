@@ -19,6 +19,8 @@ package com.sun.yelw.other;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 包:        com.sun.yelw.other
@@ -41,13 +43,15 @@ public class Hello {
     public static void main(String[] args) throws InterruptedException{
 
         // 运送容量
-        final int ALL_SIZE = 5;
+        final int ALL_SIZE = 2;
         // 当前容量
-        final int CURR_CAPACITY = 10;
+        final int CURR_CAPACITY = 5;
         // 总生产量
-        final int ALL_CAPACITY = 100;
+        final int ALL_CAPACITY = 10;
 
-        HyLock lock = new HyLock(4);
+//        HyLock lock = new HyLock(4);
+
+        Lock lock = new ReentrantLock();
 
         // 取货车
         Condition carCondition = lock.newCondition();

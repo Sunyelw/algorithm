@@ -31,11 +31,11 @@ import java.util.concurrent.locks.Condition;
 public class Three {
 
     // 运送容量
-    final static int ALL_SIZE = 100;
+    final static int ALL_SIZE = 2;
     // 当前容量
-    final static int CURR_CAPACITY = 1000;
+    final static int CURR_CAPACITY = 5;
     // 总生产量
-    final static int ALL_CAPACITY = 10000;
+    final static int ALL_CAPACITY = 10;
 
     // 牛奶
     final static AtomicInteger milkInt = new AtomicInteger(0);
@@ -48,19 +48,22 @@ public class Three {
     static class LockCondition {
 
         HyLock lock;
+        // 取货车
+        Condition carCondition;
+        // 牛奶
+        Condition milkCondition;
+        // 发酵剂 - 10000
+        Condition starterCondition;
+        // 奶酪 - 10000
+        Condition cheeseCondition;
 
         LockCondition(int permits) {
             lock = new HyLock(permits);
+            carCondition = lock.newCondition();
+            milkCondition = lock.newCondition();
+            starterCondition = lock.newCondition();
+            cheeseCondition = lock.newCondition();
         }
-
-        // 取货车
-        Condition carCondition = lock.newCondition();
-        // 牛奶
-        Condition milkCondition = lock.newCondition();
-        // 发酵剂 - 10000
-        Condition starterCondition = lock.newCondition();
-        // 奶酪 - 10000
-        Condition cheeseCondition = lock.newCondition();
 
         void lock() { lock.lock(); }
 
@@ -270,7 +273,7 @@ public class Three {
                     e.printStackTrace();
                 } finally {
                     System.out.println(x + " milk unlock...");
-                    lock.unlock();
+//                    lock.unlock();
                 }
                 try {
                     Thread.sleep(2000);

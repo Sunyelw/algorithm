@@ -55,16 +55,16 @@ class Solution {
             for (int j = 0; j <= i; j++) {
                 if (nums[i] > nums[j])
                     // dp 要向 nums 借一位，无论是 i 还是 j
-                    dp[i + 1] = Math.max(dp[j + 1] + 1, dp[i + 1]);
+                    dp[i + 1] = Math.max(Math.max(dp[j + 1] + 1, dp[i + 1]), dp[i]);
             }
         }
 
-        // 最终结果
-        for (int i = 0; i < dp.length; i++) {
-            dp[0] = Math.max(dp[0], dp[i]);
-        }
+//        // 最终结果
+//        for (int i = 0; i < dp.length; i++) {
+//            dp[0] = Math.max(dp[0], dp[i]);
+//        }
 //        System.out.println("dp: " + Arrays.toString(dp));
-        return dp[0];
+        return dp[dp.length - 2];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
