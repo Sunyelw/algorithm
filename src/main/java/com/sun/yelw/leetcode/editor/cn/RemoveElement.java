@@ -58,18 +58,26 @@ public class RemoveElement{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int removeElement(int[] nums, int val) {
-        int j = -1, tmp;
-        for(int i = 0; i < nums.length; i++) {
+//        int j = -1, tmp;
+//        for(int i = 0; i < nums.length; i++) {
+//            if (nums[i] != val) {
+//                j++;
+//                if (j != i) {
+//                    tmp = nums[j];
+//                    nums[j] = nums[i];
+//                    nums[i] = tmp;
+//                }
+//            }
+//        }
+//        return j + 1;
+
+        int x = 0;
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] != val) {
-                j++;
-                if (j != i) {
-                    tmp = nums[j];
-                    nums[j] = nums[i];
-                    nums[i] = tmp;
-                }
+                nums[x++] = nums[i];
             }
         }
-        return j + 1;
+        return x;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

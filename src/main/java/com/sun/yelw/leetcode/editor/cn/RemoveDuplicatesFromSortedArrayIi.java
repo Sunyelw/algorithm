@@ -38,6 +38,8 @@
 // Related Topics 数组 双指针
 
 package com.sun.yelw.leetcode.editor.cn;
+
+@SuppressWarnings("all")
 public class RemoveDuplicatesFromSortedArrayIi{
     public static void main(String[] args) {
         Solution solution = new RemoveDuplicatesFromSortedArrayIi().new Solution();
