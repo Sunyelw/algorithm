@@ -1,48 +1,35 @@
-//给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。 
-//
-// 
-//
-// 在杨辉三角中，每个数是它左上方和右上方的数的和。 
-//
-// 示例: 
-//
-// 输入: 5
-//输出:
-//[
-//     [1],
-//    [1,1],
-//   [1,2,1],
-//  [1,3,3,1],
-// [1,4,6,4,1]
-//] 
-// Related Topics 数组
-
-package com.sun.yelw.leetcode.editor.cn;
+package com.sun.yelw.answer.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 项目名称:   pinkstone
+ * 包:        com.sun.yelw.answer.array
+ * 类名称:     PascalsTriangle118
+ * 类描述:     leetcode 118
+ * 创建人:     huangyang
+ * 创建时间:   2020/5/28 21:29
+ */
 @SuppressWarnings("all")
-public class PascalsTriangle{
-    public static void main(String[] args) {
+public class PascalsTriangle118 {
 
-        Solution solution = new PascalsTriangle().new Solution();
+    public static void main(String[] args){
 
-        List<List<Integer>> list = solution.generate(10);
+        List<List<Integer>> list = generate(10);
         for (List<Integer> in : list) {
             System.out.println(in);
         }
     }
-  
-    
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public List<List<Integer>> generate(int numRows) {
-
-        List<Integer[]> arrList = new ArrayList <>(numRows);
+    /* 方法1 暴力 */
+    // 先初始化 1 2 行
+    // 第 i 行 有 i 个数, 第一个与最后一个均为 1
+    // 再基于前一行去构造后一行 curr[i] = prev[i - 1] + prev[i]
+    private static List<List<Integer>> generate(int numRows) {
+        List<Integer[]> arrList = new ArrayList<>(numRows);
         for (int i = 1; i <= numRows; i++) {
             Integer[] arr;
             if (i == 1) {
@@ -67,7 +54,5 @@ class Solution {
 
         return arrList.stream().map(Arrays::asList).collect(Collectors.toList());
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
- 
+
 }
