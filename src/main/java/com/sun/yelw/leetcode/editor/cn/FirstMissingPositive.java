@@ -40,41 +40,35 @@ public class FirstMissingPositive{
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        // handle 1
-        int cnt = 0;
-        for (int num : nums) {
-            if (num == 1) {
-                cnt++;
+        int len = nums.length;
+
+        for(int i = 0; i < nums.length;) {
+            if (nums[i] > 0 && nums[i] < len && nums[i] != i + 1) {
+                if (nums[i] == nums[nums[i] - 1]) {
+                    i++;
+                } else {
+                    swap(nums, i, nums[i] - 1);
+                }
+                continue;
+            }
+            i++;
+        }
+
+        int res = len + 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != i + 1) {
+                res = i + 1;
                 break;
             }
         }
-        if (cnt == 0) return 1;
 
-        if (nums.length == 1) return 2;
+        return res;
+    }
 
-        // pre-handle
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] <= 0 || nums[i] > nums.length) {
-                nums[i] = 1;
-            }
-        }
-
-        // + / -
-        int index;
-        for (int i = 0; i < nums.length; i++) {
-            index = Math.abs(nums[i]) - 1;
-            if (nums[index] > 0) {
-                nums[index] = - nums[index];
-            }
-        }
-
-        int i = 1;
-        for (; i < nums.length; i++) {
-            if (nums[i] > 0) {
-                break;
-            }
-        }
-        return i + 1;
+    public void swap(int arr[], int one, int two) {
+        int z = arr[one];
+        arr[one] = arr[two];
+        arr[two] = z;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

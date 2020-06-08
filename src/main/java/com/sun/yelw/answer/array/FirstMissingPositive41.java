@@ -1,5 +1,8 @@
 package com.sun.yelw.answer.array;
 
+import com.sun.yelw.answer.Util;
+import sun.text.resources.cldr.or.FormatData_or;
+
 import java.util.Arrays;
 
 /**
@@ -14,15 +17,47 @@ public class FirstMissingPositive41 {
 
     public static void main(String[] args){
 
-        int[] arr = {1, 2, 0};
+        int[] arr = {1, 1};
         System.out.println(Arrays.toString(arr));
-        System.out.println(firstMissingPositive1(arr));
+        System.out.println(firstMissingPositive2(arr));
 
     }
 
     // 这个缺失的正整数范围一定在 [1, n+1] (n 为数组长度, n+1 的情况是数组为 1~n )
     // 先把范围外的数替换为 1 -> 要先判断 1 是否存在
     // 思路都是位图 bitmap, 标记好 [1, n] 的数字是否出现过
+
+
+    /* 方法3 原地哈希 */
+    private static int firstMissingPositive2(int[] nums) {
+
+        int len = nums.length;
+
+        // 1.构建哈希表
+        // 哈希规则: 数字 n (正整数)放到下标为 n - 1 的位置上
+        for(int i = 0; i < nums.length;) {
+            if (nums[i] > 0 && nums[i] < len && nums[i] != i + 1) {
+                // 注意重复数字
+                if (nums[i] == nums[nums[i] - 1]) {
+                    i++;
+                } else {
+                    Util.swap(nums, i, nums[i] - 1);
+                }
+                continue;
+            }
+            i++;
+        }
+
+        int res = len + 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != i + 1) {
+                res = i + 1;
+                break;
+            }
+        }
+
+        return res;
+    }
 
     /* 方法2 原地数组, 用正负数来处理是否出现 */
     private static int firstMissingPositive1(int[] nums) {

@@ -60,6 +60,7 @@ public class DBfsDemo {
     private static void doDfs(String rootPath) {
 
         if (isFile(rootPath)) {
+//            aMap.getOrDefault(getFileSize(rootPath), new ArrayList <>()).add(rootPath);
             List<String> pathList = aMap.getOrDefault(getFileSize(rootPath), new ArrayList <>());
             pathList.add(rootPath);
             if (pathList.size() == 1) aMap.put(getFileSize(rootPath), pathList);
@@ -82,7 +83,6 @@ public class DBfsDemo {
     }
 
     private static List<String> getSubFilePath(String path) {
-
         return null == new File(path).list() ? null : Arrays.asList(Objects.requireNonNull(new File(path).list()));
     }
 }
