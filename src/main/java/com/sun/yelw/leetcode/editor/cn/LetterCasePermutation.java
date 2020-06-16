@@ -27,31 +27,30 @@ package com.sun.yelw.leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class LetterCasePermutation{
     public static void main(String[] args) {
         Solution solution = new LetterCasePermutation().new Solution();
 
         System.out.println(solution.letterCasePermutation("2A3b"));
     }
-  
-    
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    List<String> list;
+    List<String> list = new ArrayList<>();
     public List<String> letterCasePermutation(String S) {
-        list = new ArrayList<>();
         recurse(S.toCharArray(), 0);
         return list;
     }
-    public void recurse(char[] chars, int idx){
-        if(idx == chars.length){
+
+    private void recurse(char[] chars, int idx) {
+        if (idx == chars.length) {
             list.add(new String(chars));
             return;
         }
         recurse(chars, idx + 1);
-        if(chars[idx] >= 'A'){
-            chars[idx] = chars[idx] < 'a'? (char)(chars[idx] + 32): (char)(chars[idx] - 32);
+        if (chars[idx] >= 'A') {
+            chars[idx] ^= 0x20;
             recurse(chars, idx + 1);
         }
     }
